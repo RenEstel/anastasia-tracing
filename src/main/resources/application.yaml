@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: anastasia-service
+logging:
+  level:
+    org.zalando.logbook: TRACE
+
+  sleuth:
+    propagation-keys: x-correlation-id
