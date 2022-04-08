@@ -5,5 +5,21 @@ logging:
   level:
     org.zalando.logbook: TRACE
 
-  sleuth:
-    propagation-keys: x-correlation-id
+logbook:
+  strategy: default
+  exclude:
+    - /actuator/**
+    - /swagger-ui/**
+    - /v3/api-docs/**
+  format:
+    style: json
+  body:
+    max-size: 3000
+    filters:
+      body: passport
+      string: phone,email,name,answer,query,text
+      number: latitude,longitude,lat,lon
+  headers:
+    enabled: false
+  logger:
+    active: true

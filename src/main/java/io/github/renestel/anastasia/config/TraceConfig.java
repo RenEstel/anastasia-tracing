@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 @Configuration(proxyBeanMethods = false)
 public class TraceConfig {
 
-    private static final String ANASTASIA_ID = "anastasia-id";
+    private static final String ANASTASIA_ID = "anastasia-message-id";
 
     @Bean
     Filter traceIdInResponseFilter(Tracer tracer) {
@@ -21,6 +21,7 @@ public class TraceConfig {
                 HttpServletResponse resp = (HttpServletResponse) response;
                 // putting trace id value in [mytraceid] response header
                 resp.addHeader(ANASTASIA_ID, currentSpan.context().traceId());
+                //todo отдавать в ответ тот же самый anastasia-message-id который приходит
             }
             chain.doFilter(request, response);
         };
